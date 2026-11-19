@@ -1,25 +1,25 @@
-// Design tokens — dataviz skill reference palette (validated light-mode instance).
-// Chrome (buttons/brand) uses GrowthCafe navy/green; CHART colors only from the validated series.
-export const ui = {
-  surface: "#fcfcfb",
-  page: "#f9f9f7",
-  ink: "#0b0b0b",
-  ink2: "#52514e",
-  muted: "#898781",
-  hairline: "#e1e0d9",
-  gridline: "#e1e0d9",
-  brand: "#143a6b",       // chrome accent (buttons, active nav)
-  brandDeep: "#0f2c52",
-  brandGreen: "#0f7a3d",
-  deltaUp: "#006300",
+// Ledger theme — validated chart colours (dataviz six-checks, light mode, paper #FAF9F6).
+// Pair (invested/redeemed): #0588A3 × #B02E2E — all checks pass.
+// Ordinal teal ramp for shares: all checks pass (2.44:1 light end).
+
+export const ledger = {
+  paper: "#FAF9F6",
+  panel: "#FFFFFF",
+  ink: "#1A2E35",
+  ink2: "#525148",
+  muted: "#8A8474",
+  hairline: "#E8E4DB",
+  teal: "#0588A3",
+  tealInk: "#0A6470",
+  tealSoft: "#E4EEF0",
+  seal: "#B02E2E",
+  credit: "#1B7A46",
+  debit: "#B02E2E",
 };
 
-// Categorical series — adjacent-pair validated order, slot n = entity n (never re-colored by rank)
-export const S1 = "#2a78d6"; // blue    → Mutual Funds
-export const S2 = "#eb6834"; // orange  → Shares & Bonds
-export const S3 = "#1baf7a"; // aqua    → Fixed Income  (sub-3:1 → direct labels shipped)
-export const S4 = "#eda100"; // yellow  → Other Assets
-export const S5 = "#e87ba4"; // magenta → Foreign Assets
+// ordinal ramp, light→dark
+export const TONE = ["#6FABB6", "#4F9AA7", "#328795", "#1C7382", "#0A5F6C"];
 
-// Status palette — reserved for state, always icon + label
-export const STATUS = { good: "#0ca30c", warning: "#fab219", serious: "#ec835a", critical: "#d03b3b" };
+// invested / redeemed series
+export const CREDIT = "#0588A3";
+export const DEBIT = "#B02E2E";

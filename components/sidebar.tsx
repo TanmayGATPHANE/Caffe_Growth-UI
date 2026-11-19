@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard, Users, Contact, Search, Shield, PieChart, ArrowLeftRight,
-  Target, BarChart3, Gauge, Wallet, Database, Mail, LayoutGrid, Leaf,
+  Target, BarChart3, Gauge, Wallet, Database, Mail, LayoutGrid, X, Leaf,
 } from "lucide-react";
 import { sidebarGroups, user } from "@/lib/data";
 
-const icons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const icons: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
   layout: LayoutDashboard, users: Users, contact: Contact, search: Search,
   shield: Shield, pie: PieChart, swap: ArrowLeftRight, target: Target,
   chart: BarChart3, gauge: Gauge, wallet: Wallet, database: Database,
@@ -18,43 +18,51 @@ const icons: Record<string, React.ComponentType<{ size?: number; className?: str
 export default function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="hidden w-60 shrink-0 flex-col bg-[#fcfcfb] lg:flex">
-      <div className="flex items-center gap-2.5 px-5 pb-2 pt-5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-b from-[#143a6b] to-[#0f7a3d] text-white">
-          <Leaf size={16} />
-        </span>
-        <div>
-          <p className="text-[15px] font-semibold leading-tight text-[#0b0b0b]">GrowthCafe</p>
-          <p className="text-[10px] text-[#898781]">MFD console · demo</p>
+    <aside className="hidden w-60 shrink-0 flex-col border-r border-[#E8E4DB] bg-[#F4F2EC] lg:flex">
+      <div className="border-b border-[#E8E4DB] px-5 pb-4 pt-6">
+        <div className="flex items-center gap-2">
+          <span className="grid h-8 w-8 place-items-center rounded-md bg-[#0A7E8A] text-white">
+            <Leaf size={15} />
+          </span>
+          <div>
+            <p className="font-display text-[17px] font-medium leading-none text-[#1A2E35]">GrowthCafe</p>
+            <p className="mt-1 text-[10px] text-[#8A8474]">LLP · broker console</p>
+          </div>
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto px-3 py-3">
+      <nav className="flex-1 overflow-y-auto px-3 py-4">
         {sidebarGroups.map((g) => (
-          <div key={g.group} className="mb-4">
-            <p className="mb-1 px-2 text-[10px] font-semibold uppercase tracking-wider text-[#898781]">{g.group}</p>
-            <ul className="space-y-0.5">
+          <div key={g.group} className="mb-5">
+            <p className="mb-1 px-2 text-[10.5px] font-medium text-[#8A8474]">{g.group}</p>
+            <ul>
               {g.items.map((item) => {
                 const Icon = icons[item.icon];
                 const active = item.href === pathname;
                 return (
                   <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className={`flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] transition-colors ${
-                        active
-                          ? "bg-[#eaf2fc] font-medium text-[#184f95]"
-                          : "text-[#52514e] hover:bg-[#f0efec]"
-                      }`}
-                    >
-                      {Icon && <Icon size={15} className={active ? "text-[#184f95]" : "text-[#898781]"} />}
-                      <span className="flex-1">{item.label}</span>
-                      {item.soon && (
-                        <span className="rounded-full bg-[#f0efec] px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[#898781]">
-                          soon
-                        </span>
-                      )}
-                    </Link>
+                    {item.href === "#" ? (
+                      <span
+                        title="Not in this demo"
+                        className="flex cursor-not-allowed items-center gap-2.5 rounded-md px-2.5 py-[7px] text-[13px] text-[#C9C2B2]"
+                      >
+                        {Icon && <Icon size={15} />}
+                        <span className="flex-1">{item.label}</span>
+                        <X size={12} />
+                      </span>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={`relative flex items-center gap-2.5 rounded-md px-2.5 py-[7px] text-[13px] ${
+                          active
+                            ? "bg-[#EDEBE1] font-medium text-[#1A2E35] before:absolute before:inset-y-1 before:left-0 before:w-[2.5px] before:rounded-full before:bg-[#0A7E8A]"
+                            : "text-[#525148] hover:bg-[#EDEBE1]"
+                        }`}
+                      >
+                        {Icon && <Icon size={15} className={active ? "text-[#0A7E8A]" : "text-[#8A8474]"} />}
+                        <span className="flex-1">{item.label}</span>
+                      </Link>
+                    )}
                   </li>
                 );
               })}
@@ -63,14 +71,14 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      <div className="mx-3 mb-4 rounded-xl border border-[#e1e0d9] bg-white p-3">
+      <div className="border-t border-[#E8E4DB] px-5 py-4">
         <div className="flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-[#143a6b] text-[11px] font-bold text-white">
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-[#1A2E35] text-[10.5px] font-medium text-white">
             {user.initials}
           </span>
           <div className="min-w-0">
-            <p className="truncate text-[12px] font-medium text-[#0b0b0b]">{user.name}</p>
-            <p className="text-[10px] text-[#898781]">{user.role}</p>
+            <p className="truncate text-[12.5px] font-medium text-[#1A2E35]">{user.name}</p>
+            <p className="text-[10.5px] text-[#8A8474]">{user.role}</p>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Sidebar from "@/components/sidebar";
 import PageHeader from "@/components/page-header";
-import { ShieldCheck, Clock3, Upload, Plus } from "lucide-react";
+import { ShieldCheck, Clock3, Upload, Plus, X } from "lucide-react";
 import { policies } from "@/lib/data";
 
 export default function InsurancePage() {
@@ -11,44 +11,44 @@ export default function InsurancePage() {
   const rows = tab === "life" ? policies.life : policies.general;
 
   return (
-    <div className="flex min-h-screen bg-[#f9f9f7]">
+    <div className="flex min-h-screen bg-[#FAF9F6]">
       <Sidebar />
       <div className="min-w-0 flex-1 p-6 xl:p-8">
         <PageHeader title="Insurance" subtitle="Policies held by your investors (demo register)">
           <button
             disabled
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#e1e0d9] bg-white px-3 py-2 text-[12px] text-[#52514e] disabled:opacity-45"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#E8E4DB] bg-white px-3 py-2 text-[12px] text-[#525148] disabled:cursor-not-allowed disabled:bg-[#F1EEE7] disabled:text-[#8a8474]"
           >
-            <Upload size={13} /> Bulk upload · soon
+            <Upload size={13} /> Bulk upload <X size={11} className="opacity-50" />
           </button>
           <button
             disabled
-            className="inline-flex items-center gap-1.5 rounded-lg bg-[#143a6b] px-3 py-2 text-[12px] font-medium text-white disabled:opacity-40"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-[#0A7E8A] px-3 py-2 text-[12px] font-medium text-white disabled:cursor-not-allowed disabled:bg-[#F1EEE7] disabled:text-[#8a8474]"
           >
-            <Plus size={13} /> Add policy
+            <Plus size={13} /> Add policy <X size={11} className="opacity-50" />
           </button>
         </PageHeader>
 
-        <div className="mb-4 inline-flex gap-1 rounded-lg border border-[#e1e0d9] bg-white p-1">
+        <div className="mb-4 inline-flex gap-1 rounded-lg border border-[#E8E4DB] bg-white p-1">
           {([["life", "Life insurance", policies.life.length], ["general", "General insurance", policies.general.length]] as const).map(
             ([key, label, n]) => (
               <button
                 key={key}
                 onClick={() => setTab(key)}
                 className={`rounded-md px-3.5 py-1.5 text-[11.5px] font-medium ${
-                  tab === key ? "bg-[#eaf2fc] text-[#184f95]" : "text-[#52514e] hover:bg-[#f0efec]"
+                  tab === key ? "bg-[#E4EEF0] text-[#0A6470]" : "text-[#525148] hover:bg-[#F4F2EC]"
                 }`}
               >
-                {label} <span className="tabular-nums text-[#898781]">· {n}</span>
+                {label} <span className="tabular-nums text-[#8a8474]">· {n}</span>
               </button>
             ),
           )}
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-[#e1e0d9] bg-[#fcfcfb]">
+        <div className="overflow-hidden rounded-lg border border-[#E8E4DB] bg-white">
           <table className="w-full text-[12.5px]">
             <thead>
-              <tr className="border-b border-[#e1e0d9] bg-[#f9f9f7] text-left text-[11px] uppercase tracking-wide text-[#898781]">
+              <tr className="border-b border-[#E8E4DB] bg-[#FAF9F6] text-left text-[11px] uppercase tracking-wide text-[#8a8474]">
                 {["Policy holder", "Insurer", "Policy no.", "Premium", "Sum assured", "Next renewal", "Status"].map((h) => (
                   <th key={h} className="px-4 py-3 font-medium">{h}</th>
                 ))}
@@ -56,20 +56,20 @@ export default function InsurancePage() {
             </thead>
             <tbody className="divide-y divide-[#f0efec]">
               {rows.map((p, i) => (
-                <tr key={i} className={`bg-white hover:bg-[#faf9f5] ${i % 2 ? "bg-[#faf9f5]/60" : ""}`}>
-                  <td className="px-4 py-3 font-medium text-[#0b0b0b]">{p.holder}</td>
-                  <td className="px-4 py-3 text-[#52514e]">{p.insurer}</td>
-                  <td className="px-4 py-3 tabular-nums text-[#52514e]">{p.policy}</td>
-                  <td className="px-4 py-3 tabular-nums text-[#52514e]">{p.premium}</td>
-                  <td className="px-4 py-3 tabular-nums text-[#0b0b0b]">{p.assured}</td>
-                  <td className="px-4 py-3 text-[#52514e]">{p.renewal}</td>
+                <tr key={i} className={`bg-white hover:bg-[#F4F2EC] ${i % 2 ? "bg-[#F4F2EC]/60" : ""}`}>
+                  <td className="px-4 py-3 font-medium text-[#1a2e35]">{p.holder}</td>
+                  <td className="px-4 py-3 text-[#525148]">{p.insurer}</td>
+                  <td className="px-4 py-3 tabular-nums text-[#525148]">{p.policy}</td>
+                  <td className="px-4 py-3 tabular-nums text-[#525148]">{p.premium}</td>
+                  <td className="px-4 py-3 tabular-nums text-[#1a2e35]">{p.assured}</td>
+                  <td className="px-4 py-3 text-[#525148]">{p.renewal}</td>
                   <td className="px-4 py-3">
                     {p.status === "Active" ? (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-[#eaf7ea] px-2 py-0.5 text-[10.5px] font-medium text-[#006300]">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-[#ecf7ef] px-2 py-0.5 text-[10.5px] font-medium text-[#1B7A46]">
                         <ShieldCheck size={11} /> Active
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-[#fdf3dc] px-2 py-0.5 text-[10.5px] font-medium text-[#86660a]">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-[#F7EFE2] px-2 py-0.5 text-[10.5px] font-medium text-[#8A6A2E]">
                         <Clock3 size={11} /> Renewal due
                       </span>
                     )}
@@ -79,7 +79,7 @@ export default function InsurancePage() {
             </tbody>
           </table>
           {rows.length === 0 && (
-            <p className="px-4 py-10 text-center text-[12.5px] text-[#898781]">No {tab} policies registered yet.</p>
+            <p className="px-4 py-10 text-center text-[12.5px] text-[#8a8474]">No {tab} policies registered yet.</p>
           )}
         </div>
       </div>

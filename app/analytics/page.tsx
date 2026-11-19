@@ -1,5 +1,3 @@
-"use client";
-
 import {
   PieChart, ArrowLeftRight, Shield, TrendingUp, Target, UserRound,
   Flame, Plus, Repeat, CircleAlert, Scale, Search, Users, CalendarClock,
@@ -9,7 +7,7 @@ import PageHeader from "@/components/page-header";
 import { ToolCard, ToolGrid } from "@/components/tool-card";
 import { analyticsReports } from "@/lib/data";
 
-const icons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const icons: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
   pie: PieChart, swap: ArrowLeftRight, shield: Shield, trending: TrendingUp,
   target: Target, user: UserRound, flame: Flame, plus: Plus, repeat: Repeat,
   alert: CircleAlert, scale: Scale, search: Search, users: Users, clock: CalendarClock,
@@ -17,7 +15,7 @@ const icons: Record<string, React.ComponentType<{ size?: number; className?: str
 
 export default function AnalyticsPage() {
   return (
-    <div className="flex min-h-screen bg-[#f9f9f7]">
+    <div className="flex min-h-screen bg-[#FAF9F6]">
       <Sidebar />
       <div className="min-w-0 flex-1 p-6 xl:p-8">
         <PageHeader
@@ -34,14 +32,10 @@ export default function AnalyticsPage() {
                 title={r.title}
                 desc={r.desc}
                 href="#"
-                status="stub"
               />
             );
           })}
         </ToolGrid>
-        <p className="mt-4 text-center text-[11px] text-[#898781]">
-          AUM Reports & Cash Flow were verified live in the original — their exact filters are in wiki §3.8.
-        </p>
       </div>
     </div>
   );

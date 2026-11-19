@@ -18,7 +18,7 @@ export interface AssetClass {
 export const portfolio = {
   aumLabel: "₹ 11.45 L",
   assetClasses: [
-    { name: "Mutual Funds",   value: 9_80_000, label: "₹ 9.80 L", color: "#2a78d6", pct: 86 },
+    { name: "Mutual Funds",   value: 9_80_000, label: "₹ 9.80 L", color: "#0588A3", pct: 86 },
     { name: "Shares & Bonds", value:   80_000, label: "₹ 0.80 L", color: "#eb6834", pct: 7 },
     { name: "Fixed Income",   value:   35_000, label: "₹ 0.35 L", color: "#1baf7a", pct: 3 },
     { name: "Other Assets",   value:   35_000, label: "₹ 0.35 L", color: "#eda100", pct: 3 },
@@ -40,7 +40,7 @@ export const flows = {
   invested:   [21.2, 4.2, 8.4, 1.2, 3.1, 0.9],
   redeemed:   [2.4,  1.8, 2.0, 0.0, 0.0, 0.3],
   series: [
-    { name: "Investment", color: "#2a78d6" },
+    { name: "Investment", color: "#0588A3" },
     { name: "Redemption", color: "#eb6834" },
   ],
   max: 21.2,
@@ -73,12 +73,12 @@ export const sidebarGroups = [
     { label: "Clients", href: "/clients", icon: "users" },
     { label: "Folio Lookup", href: "/folio-lookup", icon: "search" },
     { label: "Insurance", href: "/insurance", icon: "shield" },
-    { label: "CRM", href: "#", icon: "contact", soon: true },
+    { label: "CRM", href: "#", icon: "contact" },
   ]},
   { group: "Portfolio", items: [
     { label: "Comprehensive Portfolio", href: "/portfolio", icon: "pie" },
     { label: "Transactions", href: "/transactions", icon: "swap" },
-    { label: "Model Portfolio", href: "#", icon: "target", soon: true },
+    { label: "Model Portfolio", href: "#", icon: "target" },
   ]},
   { group: "Insights", items: [
     { label: "Business Analytics", href: "/analytics", icon: "chart" },
@@ -87,14 +87,14 @@ export const sidebarGroups = [
   ]},
   { group: "Operations", items: [
     { label: "Data Management", href: "/data-management", icon: "database" },
-    { label: "Email Scheduler", href: "#", icon: "mail", soon: true },
+    { label: "Email Scheduler", href: "#", icon: "mail" },
     { label: "Utilities", href: "/utilities", icon: "grid" },
   ]},
 ];
 
 // ---- transactions mock ----
 export const categoryColors: Record<string, string> = {
-  Equity: "#2a78d6", Debt: "#eb6834", Liquid: "#1baf7a",
+  Equity: "#0588A3", Debt: "#eb6834", Liquid: "#1baf7a",
   Arbitrage: "#eda100", Hybrid: "#e87ba4", Other: "#6250d6",
 };
 export const transactions = [
@@ -153,15 +153,15 @@ export const brokerage = {
 
 // ---- utility tools ----
 export const utilityTools = [
-  { icon: "flame", title: "Top Schemes", desc: "Rank schemes by returns, AUM and ratings.", href: "#", status: "stub" },
-  { icon: "list", title: "Task Manager", desc: "Assign follow-ups with due dates.", href: "#", status: "stub" },
-  { icon: "target", title: "Goal Planner", desc: "Map goals to investments and coverage.", href: "#", status: "stub" },
-  { icon: "calc", title: "Calculators", desc: "SIP, SWP, STP & goal projections — live demo inside.", href: "/utilities/calculators", status: "working" },
-  { icon: "clipboard", title: "Forms", desc: "Pre-filled form generator + downloads.", href: "#", status: "stub" },
-  { icon: "globe", title: "Market Data", desc: "NAV history, gainers, NFO & FMP lists.", href: "#", status: "stub" },
-  { icon: "scale", title: "Scheme Compare", desc: "Trailing / rolling / overlap / correlation.", href: "#", status: "stub" },
-  { icon: "filter", title: "Fund Screener", desc: "12 filter criteria with saved lists.", href: "#", status: "stub" },
-  { icon: "tags", title: "Label Maker", desc: "Mailing labels from your client book.", href: "#", status: "stub" },
+  { icon: "flame", title: "Top Schemes", desc: "Rank schemes by returns, AUM and ratings.", href: "#" },
+  { icon: "list", title: "Task Manager", desc: "Assign follow-ups with due dates.", href: "#" },
+  { icon: "target", title: "Goal Planner", desc: "Map goals to investments and coverage.", href: "#" },
+  { icon: "calc", title: "Calculators", desc: "SIP, SWP, STP & goal projections — live demo inside.", href: "/utilities/calculators" },
+  { icon: "clipboard", title: "Forms", desc: "Pre-filled form generator + downloads.", href: "#" },
+  { icon: "globe", title: "Market Data", desc: "NAV history, gainers, NFO & FMP lists.", href: "#" },
+  { icon: "scale", title: "Scheme Compare", desc: "Trailing / rolling / overlap / correlation.", href: "#" },
+  { icon: "filter", title: "Fund Screener", desc: "12 filter criteria with saved lists.", href: "#" },
+  { icon: "tags", title: "Label Maker", desc: "Mailing labels from your client book.", href: "#" },
 ];
 
 export const analyticsReports = [

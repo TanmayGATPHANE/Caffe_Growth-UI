@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Sidebar from "@/components/sidebar";
 import PageHeader from "@/components/page-header";
-import { FileText, Mail, MessageCircle, ChevronLeft, Check, GripVertical } from "lucide-react";
+import { FileText, Mail, MessageCircle, ChevronLeft, Check, GripVertical, X } from "lucide-react";
 
 const sections = [
   "Executive Summary", "Asset Analysis", "Holding Analysis", "Investment Snapshot",
@@ -27,52 +27,52 @@ export default function PortfolioPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#f9f9f7]">
+    <div className="flex min-h-screen bg-[#FAF9F6]">
       <Sidebar />
       <div className="min-w-0 flex-1 p-6 xl:p-8">
-        <Link href="/dashboard" className="mb-3 inline-flex items-center gap-1 text-[12px] text-[#898781] hover:text-[#184f95]">
+        <Link href="/dashboard" className="mb-3 inline-flex items-center gap-1 text-[12px] text-[#8a8474] hover:text-[#0A6470]">
           <ChevronLeft size={13} /> Dashboard
         </Link>
-        <PageHeader title="Comprehensive Portfolio" subtitle="Configure the 8-section client report, then export — generation ships with the API." />
+        <PageHeader title="Comprehensive Portfolio" subtitle="Build the client-facing comprehensive report." />
 
         <div className="grid gap-4 xl:grid-cols-12">
           {/* configurator */}
           <div className="space-y-4 xl:col-span-7">
-            <div className="rounded-2xl border border-[#e1e0d9] bg-[#fcfcfb] p-5">
-              <p className="text-[13px] font-semibold text-[#0b0b0b]">1 · Whose portfolio?</p>
-              <div className="mt-3 inline-flex gap-1 rounded-lg border border-[#e1e0d9] bg-white p-1">
+            <div className="rounded-lg border border-[#E8E4DB] bg-white p-5">
+              <p className="text-[13px] font-semibold text-[#1a2e35]">1 · Whose portfolio?</p>
+              <div className="mt-3 inline-flex gap-1 rounded-lg border border-[#E8E4DB] bg-white p-1">
                 {([["client", "Client"], ["client", "Family head"]] as const).map(([, label], idx) => (
                   <button
                     key={label}
                     onClick={() => setByClient(idx === 0)}
                     className={`rounded-md px-3.5 py-1.5 text-[11.5px] font-medium ${
-                      byClient === (idx === 0) ? "bg-[#eaf2fc] text-[#184f95]" : "text-[#52514e] hover:bg-[#f0efec]"
+                      byClient === (idx === 0) ? "bg-[#E4EEF0] text-[#0A6470]" : "text-[#525148] hover:bg-[#F4F2EC]"
                     }`}
                   >
                     {label}
                   </button>
                 ))}
               </div>
-              <div className="mt-3 inline-flex w-full items-center gap-2 rounded-lg border border-[#e1e0d9] bg-white px-3 py-2 text-[12px] text-[#898781]">
+              <div className="mt-3 inline-flex w-full items-center gap-2 rounded-lg border border-[#E8E4DB] bg-white px-3 py-2 text-[12px] text-[#8a8474]">
                 🔍 Select an investor (dropdown wired to /clients after API)
               </div>
-              <p className="mt-3 text-[11.5px] text-[#898781]">As-on NAV date · pinned to latest NAV (16 Nov 2026)</p>
+              <p className="mt-3 text-[11.5px] text-[#8a8474]">As-on NAV date · pinned to latest NAV (16 Nov 2026)</p>
             </div>
 
-            <div className="rounded-2xl border border-[#e1e0d9] bg-[#fcfcfb] p-5">
+            <div className="rounded-lg border border-[#E8E4DB] bg-white p-5">
               <div className="flex items-center justify-between">
-                <p className="text-[13px] font-semibold text-[#0b0b0b]">2 · Sections in the report</p>
-                <span className="text-[11px] text-[#898781]">{selected.length} of 8 · drag order with arrows</span>
+                <p className="text-[13px] font-semibold text-[#1a2e35]">2 · Sections in the report</p>
+                <span className="text-[11px] text-[#8a8474]">{selected.length} of 8 · drag order with arrows</span>
               </div>
               <ul className="mt-3 space-y-1.5">
                 {selected.map((s, i) => (
-                  <li key={s} className="flex items-center gap-2 rounded-lg border border-[#e1e0d9] bg-white px-3 py-2">
-                    <GripVertical size={13} className="text-[#c3c2b7]" />
-                    <span className="flex-1 text-[12.5px] text-[#0b0b0b]"><span className="text-[#898781]">{i + 1} ·</span> {s}</span>
+                  <li key={s} className="flex items-center gap-2 rounded-lg border border-[#E8E4DB] bg-white px-3 py-2">
+                    <GripVertical size={13} className="text-[#D0D5DD]" />
+                    <span className="flex-1 text-[12.5px] text-[#1a2e35]"><span className="text-[#8a8474]">{i + 1} ·</span> {s}</span>
                     <div className="flex gap-1">
-                      <button onClick={() => move(i, -1)} className="rounded border border-[#e1e0d9] px-1.5 text-[11px] text-[#52514e] hover:bg-[#f0efec]">↑</button>
-                      <button onClick={() => move(i, 1)} className="rounded border border-[#e1e0d9] px-1.5 text-[11px] text-[#52514e] hover:bg-[#f0efec]">↓</button>
-                      <button onClick={() => toggle(selected, setSelected, s)} className="rounded border border-[#e1e0d9] px-1.5 text-[11px] text-[#a02625] hover:bg-[#fdeeee]">✕</button>
+                      <button onClick={() => move(i, -1)} className="rounded border border-[#E8E4DB] px-1.5 text-[11px] text-[#525148] hover:bg-[#F4F2EC]">↑</button>
+                      <button onClick={() => move(i, 1)} className="rounded border border-[#E8E4DB] px-1.5 text-[11px] text-[#525148] hover:bg-[#F4F2EC]">↓</button>
+                      <button onClick={() => toggle(selected, setSelected, s)} className="rounded border border-[#E8E4DB] px-1.5 text-[11px] text-[#B02E2E] hover:bg-[#fdeeee]">✕</button>
                     </div>
                   </li>
                 ))}
@@ -80,7 +80,7 @@ export default function PortfolioPage() {
                   <li key={s}>
                     <button
                       onClick={() => toggle(selected, setSelected, s)}
-                      className="w-full rounded-lg border border-dashed border-[#c3c2b7] px-3 py-2 text-left text-[12px] text-[#898781] hover:bg-[#f0efec]"
+                      className="w-full rounded-lg border border-dashed border-[#D6D1C4] px-3 py-2 text-left text-[12px] text-[#8a8474] hover:bg-[#F4F2EC]"
                     >
                       + Add “{s}”
                     </button>
@@ -89,11 +89,11 @@ export default function PortfolioPage() {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-[#e1e0d9] bg-[#fcfcfb] p-5">
-              <p className="text-[13px] font-semibold text-[#0b0b0b]">3 · Products</p>
+            <div className="rounded-lg border border-[#E8E4DB] bg-white p-5">
+              <p className="text-[13px] font-semibold text-[#1a2e35]">3 · Products</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {products.map((p) => (
-                  <span key={p} className="inline-flex items-center gap-1.5 rounded-full bg-[#eaf2fc] px-3 py-1.5 text-[11.5px] font-medium text-[#184f95]">
+                  <span key={p} className="inline-flex items-center gap-1.5 rounded-full bg-[#E4EEF0] px-3 py-1.5 text-[11.5px] font-medium text-[#0A6470]">
                     <Check size={12} /> {p}
                   </span>
                 ))}
@@ -103,7 +103,7 @@ export default function PortfolioPage() {
                   <button
                     key={p}
                     onClick={() => setProducts([...products, p])}
-                    className="rounded-lg border border-dashed border-[#c3c2b7] px-2.5 py-1.5 text-[11px] text-[#898781] hover:bg-[#f0efec]"
+                    className="rounded-lg border border-dashed border-[#D6D1C4] px-2.5 py-1.5 text-[11px] text-[#8a8474] hover:bg-[#F4F2EC]"
                   >
                     + {p}
                   </button>
@@ -112,23 +112,23 @@ export default function PortfolioPage() {
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-lg bg-[#143a6b]/40 px-4 py-2.5 text-[12.5px] font-semibold text-white disabled:opacity-40">
-                <FileText size={14} /> Generate PDF · needs API
+              <span className="inline-flex items-center gap-1.5 rounded-lg bg-[#0A7E8A]/40 px-4 py-2.5 text-[12.5px] font-semibold text-white disabled:cursor-not-allowed disabled:bg-[#F1EEE7] disabled:text-[#8a8474]">
+                <FileText size={14} /> Generate PDF <X size={11} className="opacity-50" />
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#e1e0d9] bg-white px-3.5 py-2.5 text-[12px] text-[#898781]">
-                <Mail size={13} /> Send on email
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#E8E4DB] bg-white px-3.5 py-2.5 text-[12px] text-[#8a8474]">
+                <Mail size={13} /> Send on email <X size={11} className="opacity-50" />
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#e1e0d9] bg-white px-3.5 py-2.5 text-[12px] text-[#898781]">
-                <MessageCircle size={13} /> WhatsApp
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#E8E4DB] bg-white px-3.5 py-2.5 text-[12px] text-[#8a8474]">
+                <MessageCircle size={13} /> WhatsApp <X size={11} className="opacity-50" />
               </span>
             </div>
           </div>
 
           {/* preview panel */}
           <div className="xl:col-span-5">
-            <div className="sticky top-6 rounded-2xl border border-[#e1e0d9] bg-white p-6 shadow-[0_1px_2px_rgba(11,11,11,0.04)]">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#898781]">Report preview · section 1</p>
-              <div className="mt-3 rounded-xl bg-gradient-to-b from-[#143a6b] to-[#0f7a3d] p-4 text-white">
+            <div className="sticky top-6 rounded-lg border border-[#E8E4DB] bg-white p-6 ">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#8a8474]">Report preview · section 1</p>
+              <div className="mt-3 rounded-lg bg-gradient-to-b from-[#16324f] to-[#0d6b42] p-4 text-white">
                 <p className="text-[10px] uppercase tracking-wider text-white/60">Executive summary</p>
                 <p className="mt-1 text-lg font-semibold">₹ 11,45,142</p>
                 <p className="text-[11px] text-white/70">Total AUM · 4 investors · NAV 16 Nov 2026</p>
@@ -136,14 +136,11 @@ export default function PortfolioPage() {
               <ul className="mt-3 space-y-2">
                 {portfolioPreview.map((row) => (
                   <li key={row.k} className="flex justify-between border-b border-[#f0efec] pb-2 text-[12px] last:border-0">
-                    <span className="text-[#52514e]">{row.k}</span>
-                    <span className="font-medium text-[#0b0b0b] tabular-nums">{row.v}</span>
+                    <span className="text-[#525148]">{row.k}</span>
+                    <span className="font-medium text-[#1a2e35] tabular-nums">{row.v}</span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-[10.5px] text-[#898781]">
-                The generated PDF renders all selected sections with per-tenant branding (logo, watermark, colors) — see “Architecture & compliance”.
-              </p>
             </div>
           </div>
         </div>

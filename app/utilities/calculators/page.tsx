@@ -44,10 +44,10 @@ export default function CalculatorsPage() {
   const slider = "w-full cursor-pointer appearance-none h-1.5 rounded-full bg-[#e1e0d9] accent-[#2a78d6]";
 
   return (
-    <div className="flex min-h-screen bg-[#f9f9f7]">
+    <div className="flex min-h-screen bg-[#FAF9F6]">
       <Sidebar />
       <div className="min-w-0 flex-1 p-6 xl:p-8">
-        <Link href="/utilities" className="mb-3 inline-flex items-center gap-1 text-[12px] text-[#898781] hover:text-[#184f95]">
+        <Link href="/utilities" className="mb-3 inline-flex items-center gap-1 text-[12px] text-[#8a8474] hover:text-[#0A6470]">
           <ChevronLeft size={13} /> Utilities
         </Link>
         <PageHeader
@@ -58,7 +58,7 @@ export default function CalculatorsPage() {
         <div className="grid gap-4 xl:grid-cols-12">
           {/* inputs */}
           <div className="xl:col-span-5">
-            <div className="space-y-5 rounded-2xl border border-[#e1e0d9] bg-[#fcfcfb] p-5">
+            <div className="space-y-5 rounded-lg border border-[#E8E4DB] bg-white p-5">
               {[
                 { label: "Monthly investment (₹)", value: monthly, set: (v: number) => setMonthly(v), min: 500, max: 200000, step: 500, display: `₹ ${monthly.toLocaleString("en-IN")}` },
                 { label: "Investment period (years)", value: years, set: (v: number) => setYears(v), min: 1, max: 30, step: 1, display: `${years} years` },
@@ -66,8 +66,8 @@ export default function CalculatorsPage() {
               ].map((f) => (
                 <div key={f.label}>
                   <div className="mb-1.5 flex items-center justify-between">
-                    <label className="text-[12.5px] font-medium text-[#52514e]">{f.label}</label>
-                    <span className="rounded-lg bg-[#eaf2fc] px-2.5 py-1 text-[12px] font-semibold text-[#184f95] tabular-nums">
+                    <label className="text-[12.5px] font-medium text-[#525148]">{f.label}</label>
+                    <span className="rounded-lg bg-[#E4EEF0] px-2.5 py-1 text-[12px] font-semibold text-[#0A6470] tabular-nums">
                       {f.display}
                     </span>
                   </div>
@@ -79,39 +79,36 @@ export default function CalculatorsPage() {
                 </div>
               ))}
 
-              <div className="grid grid-cols-3 gap-2 border-t border-[#e1e0d9] pt-4 text-center">
+              <div className="grid grid-cols-3 gap-2 border-t border-[#E8E4DB] pt-4 text-center">
                 <div>
-                  <p className="text-[10px] uppercase tracking-wide text-[#898781]">Invested</p>
-                  <p className="mt-0.5 text-[15px] font-semibold text-[#0b0b0b]">{inr(last.invested)}</p>
+                  <p className="text-[10px] uppercase tracking-wide text-[#8a8474]">Invested</p>
+                  <p className="mt-0.5 text-[15px] font-semibold text-[#1a2e35]">{inr(last.invested)}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-wide text-[#898781]">Est. returns</p>
-                  <p className="mt-0.5 text-[15px] font-semibold text-[#006300]">{inr(gain)}</p>
+                  <p className="text-[10px] uppercase tracking-wide text-[#8a8474]">Est. returns</p>
+                  <p className="mt-0.5 text-[15px] font-semibold text-[#1B7A46]">{inr(gain)}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-wide text-[#898781]">Maturity</p>
-                  <p className="mt-0.5 text-[15px] font-semibold text-[#184f95]">{inr(last.value)}</p>
+                  <p className="text-[10px] uppercase tracking-wide text-[#8a8474]">Maturity</p>
+                  <p className="mt-0.5 text-[15px] font-semibold text-[#0A6470]">{inr(last.value)}</p>
                 </div>
               </div>
 
               <button
                 onClick={() => { setMonthly(10000); setYears(10); setRate(12); }}
-                className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-[#e1e0d9] bg-white py-2 text-[12px] font-medium text-[#52514e] hover:bg-[#f0efec]"
+                className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-[#E8E4DB] bg-white py-2 text-[12px] font-medium text-[#525148] hover:bg-[#F4F2EC]"
               >
                 <RefreshCw size={12} /> Reset
               </button>
             </div>
-            <p className="mt-3 text-center text-[10.5px] text-[#898781]">
-              PDF export & SWP/STP/lumpsum variants come with the API (QuestPDF) — wiki §5 of the estimate.
-            </p>
           </div>
 
           {/* chart — value growth per year (single series → no legend, title names it) */}
           <div className="xl:col-span-7">
-            <div className="rounded-2xl border border-[#e1e0d9] bg-[#fcfcfb] p-5">
+            <div className="rounded-lg border border-[#E8E4DB] bg-white p-5">
               <div className="flex items-baseline justify-between">
-                <h3 className="text-[13px] font-semibold text-[#0b0b0b]">Projected value by year</h3>
-                <span className="text-[11px] text-[#898781]">
+                <h3 className="text-[13px] font-semibold text-[#1a2e35]">Projected value by year</h3>
+                <span className="text-[11px] text-[#8a8474]">
                   {inr(monthly)}/mo · {rate}% p.a. · {years} yr
                 </span>
               </div>
@@ -125,11 +122,11 @@ export default function CalculatorsPage() {
                         {/* grown portion on top of invested portion — single hue, two steps */}
                         <span
                           className="w-full rounded-t-[4px] transition-colors group-hover:opacity-80"
-                          style={{ height: `${grownH - investedH}%`, background: "#86b6ef" }}
+                          style={{ height: `${grownH - investedH}%`, background: "#6FABB6" }}
                         />
                         <span
                           className="w-full rounded-b-[4px]"
-                          style={{ height: `${Math.max(0, investedH)}%`, background: "#2a78d6" }}
+                          style={{ height: `${Math.max(0, investedH)}%`, background: "#0588A3" }}
                         />
                       </div>
                       {/* hover tooltip (hover layer) */}
@@ -140,18 +137,18 @@ export default function CalculatorsPage() {
                   );
                 })}
               </div>
-              <div className="mt-2 flex items-center justify-between border-t border-[#e1e0d9] pt-2 text-[10.5px] text-[#898781]">
+              <div className="mt-2 flex items-center justify-between border-t border-[#E8E4DB] pt-2 text-[10.5px] text-[#8a8474]">
                 <span>Yr 1</span>
                 <span>Yr {Math.round(years / 2)}</span>
                 <span>
-                  Yr {years} · <span className="font-semibold text-[#0d366b]">{inr(last.value)}</span>
+                  Yr {years} · <span className="font-semibold text-[#0A6470]">{inr(last.value)}</span>
                 </span>
               </div>
               {/* legend: two encodings (invested vs returns) */}
-              <div className="mt-3 flex items-center gap-4 text-[11px] text-[#52514e]">
+              <div className="mt-3 flex items-center gap-4 text-[11px] text-[#525148]">
                 <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-[3px] bg-[#2a78d6]" /> Amount invested</span>
                 <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-[3px] bg-[#86b6ef]" /> Estimated gains</span>
-                <span className="ml-auto text-[#898781]">hover a bar for the exact figure</span>
+                <span className="ml-auto text-[#8a8474]">hover a bar for the exact figure</span>
               </div>
             </div>
 
@@ -162,9 +159,9 @@ export default function CalculatorsPage() {
                 { t: "SWP", d: "Withdrawal plans" },
                 { t: "Goal planner", d: "Target-based view" },
               ].map((c) => (
-                <div key={c.t} className="rounded-xl border border-dashed border-[#c3c2b7] p-3 text-center">
-                  <p className="text-[11.5px] font-semibold text-[#52514e]">{c.t}</p>
-                  <p className="mt-0.5 text-[10px] text-[#898781]">{c.d} · soon</p>
+                <div key={c.t} className="rounded-lg border border-dashed border-[#D6D1C4] p-3 text-center">
+                  <p className="text-[11.5px] font-semibold text-[#525148]">{c.t}</p>
+                  <p className="mt-0.5 text-[10px] text-[#8a8474]">{c.d}</p>
                 </div>
               ))}
             </div>
